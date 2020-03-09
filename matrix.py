@@ -27,14 +27,14 @@ def make_hermite():
 
 def generate_curve_coefs( p0, p1, p2, p3, t ):
     #t = 0: bezier. t = 1: hermite
-    points = [[p0, p1, p2, p3]]
-    if t == 0:
+    coefficients = [[p0, p1, p2, p3]]
+    if t == 'bezier':
         bezier = make_bezier()
-        points = matrix_mult(bezier, points)
+        matrix_mult(bezier, coefficients)
     else:
         hermite = make_hermite()
-        points = matrix_mult(hermite, points)
-    return points
+        matrix_mult(hermite, coefficients)
+    return coefficients
 
 def make_translate( x, y, z ):
     t = new_matrix()
